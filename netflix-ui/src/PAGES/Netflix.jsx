@@ -6,11 +6,26 @@ import backgroundImage from '../ASSETS/home.jpg';
 import MovieLogo from '../ASSETS/homeTitle.webp';
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchMovies, getGenres } from '../STORE';
 
 const Netflix = () => {
 
   const [ isScrolled, setIsScrolled ] = useState(false);
   const navigate = useNavigate();
+  const genresLoaded = useSelector((state) => state.netflix.genresLoaded);
+  const movies = useSelector((state) => state.netflix.movies);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getGenres());
+  }, []);
+
+  useEffect(() => {
+    if (genresLoaded) dispatch(fetchMovies({ type: "all" }));
+  });
 
   window.onscroll = () => {
      setIsScrolled(window.pageYOffset === 0 ? false : true );
