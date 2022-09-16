@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchMovies, getGenres } from '../STORE';
+import Slider from '../COMPONENTS/Slider';
 
 const Netflix = () => {
 
@@ -51,6 +52,7 @@ const Netflix = () => {
           </div>
         </div>
       </div>
+      <Slider movies={ movies }/>
     </Container>
   )
 }
