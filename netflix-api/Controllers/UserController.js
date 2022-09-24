@@ -37,7 +37,7 @@ module.exports.addToLikedMovies = async (req,res) => {
 module.exports.getLikedMovies = async (req,res) => {
     try {
         const { email } = req.params;
-        const user = await userSchema.findOne({ email });
+        const user = await userSchema.findOne({ email});
 
         if (user) {
             res.status(200).json({ message: 'success', movies: user.likedMovies });
